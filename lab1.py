@@ -22,7 +22,9 @@ scaler = MinMaxScaler()
 df[num_col] = scaler.fit_transform(df[num_col])
 print(df[num_col].head(10))
 
-categ_col = df.select_dtypes(include = ['str']).columns
+categ_col = df.select_dtypes(include = ['object']).columns
 df = pd.get_dummies(df, columns = categ_col, drop_first = True)
 
 print(df.head(10))
+
+df.to_csv("processed_dataset.csv", index=False)
